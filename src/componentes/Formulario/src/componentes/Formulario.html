@@ -1,7 +1,6 @@
-
 <section class="src-componentes-formulario">
   <div class="jumbotron">
-    <h2>Componente Formulario Avanzado</h2>
+    <h2>Formulario</h2>
     <hr>
 
     <vue-form :state="formState" @submit.prevent="enviar()">
@@ -31,23 +30,6 @@
           <div v-if="formData.nombre.length == nombreLengthMax" class="alert alert-danger mt-1">
             Máximo de caracteres ({{nombreLengthMax}}) alcanzados
           </div>
-        </field-messages>
-      </validate>
-      <br>
-
-      <validate tag="div">
-        <label for="apellido">Apellido</label>
-        <input 
-          type="text" 
-          id="apellido" 
-          name="apellido"
-          class="form-control"
-          autocomplete="off"
-          v-model.trim="formData.apellido"
-          required
-        >
-        <field-messages name="apellido" show="$dirty">
-          <div slot="required" class="alert alert-danger mt-1">Campo requerido</div>
         </field-messages>
       </validate>
       <br>
@@ -90,17 +72,14 @@
         </field-messages>
       </validate>
       <br>
-      <button class="btn btn-success my-4" :disabled="formState.$invalid" type="submit">Enviar</button>
+
+      <button class="btn btn-info my-4" :disabled="formState.$invalid" type="submit">Enviar</button>
 
     </vue-form>
 
     <hr>
-    <p><u>formData</u></p>
+    <p><u>Data del formulario:</u></p>
     <pre>{{formData}}</pre>
-
-    <hr>
-    <p><u>formState</u></p>
-    <pre>{{formState}}</pre>
 
   </div>
 </section>

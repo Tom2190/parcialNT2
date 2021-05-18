@@ -1,8 +1,7 @@
 <template>
 
-  <section class="src-components-navbar">
-    <nav class="navbar navbar-expand-md navbar-dark bg-info">
-
+  <section class="src-componentes-navbar">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
       <router-link to="/">
         <a class="navbar-brand" href="#">Inicio</a>
       </router-link>
@@ -10,23 +9,22 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
+      
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
 
-          <!-- Opción ruta Formulario -->
           <li class="nav-item">
             <router-link to="/formulario">
               <a class="nav-link" href="#">Formulario</a>
             </router-link>
           </li>
 
-          <!-- Opción ruta Usuarios -->
           <li class="nav-item">
             <router-link to="/usuarios">
               <a class="nav-link" href="#">Usuarios</a>
             </router-link>
           </li>
+
         </ul>
       </div>
     </nav>
@@ -36,27 +34,30 @@
 
 <script lang="js">
 
-export default {
-  name: 'src-components-navbar',
-  props: [],
-  mounted () {
+  export default  {
+    name: 'src-componentes-navbar',
+    props: [],
+    mounted () {
 
-  },
-  data () {
-    return {
+    },
+    data () {
+      return {
+
+      }
+    },
+    methods: {
+
+    },
+    computed: {
 
     }
-  },
-  methods: {
-
-  },
-  computed: {
-
-  }
 }
-</script>
-<style scoped lang="css">
-  /* .src-components-navbar {
 
-  } */
+
+</script>
+
+<style scoped lang="css">
+  .src-componentes-navbar {
+      margin-bottom: 0;
+  }
 </style>

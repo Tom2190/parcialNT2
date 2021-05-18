@@ -1,44 +1,45 @@
 <template>
-  <div id="app" class="container-fluid mt-3">
-    <div class="jumbotron">
-      <h1>TP4</h1>
+  <div id="app" class="container-fluid bg-dark full-height">
+    <div class="jumbotron p-3 mb-2 bg-dark text-white">
+      <h1>Tp4 - Tomás Fernández Abrevaya</h1>
       <br>
 
       <Navbar />
       <router-view></router-view>
-
-      <!-- <Formulario />
-      <Usuarios /> -->
 
     </div>
   </div>
 </template>
 
 <script>
-// import Formulario from './components/Formulario/index.vue'
-// import Usuarios from './components/Usuarios.vue'
-import Navbar from './components/Navbar.vue'
+import Navbar from './componentes/Navbar.vue'
+
 
 export default {
   name: 'App',
   components: {
-    // Formulario,
-    // Usuarios,
     Navbar
   }
 }
 </script>
 
 <style>
-  /* #app {
-  } */
-
   h1 {
-    color: blue;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: lighter;
   }
 
   .jumbotron {
     padding-top: 48px !important;
     padding-bottom: 48px !important;
   }
+
+  html, body {
+  height: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
 </style>
