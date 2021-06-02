@@ -25,6 +25,12 @@
             </router-link>
           </li>
 
+          <li class="nav-item">
+            <router-link to="/multipleChoice">
+              <a class="nav-link" href="#">Multiple Choice</a>
+            </router-link>
+          </li>
+
         </ul>
       </div>
     </nav>
