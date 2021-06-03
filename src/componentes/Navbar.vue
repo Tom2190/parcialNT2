@@ -20,12 +20,6 @@
           </li>
 
           <li class="nav-item">
-            <router-link to="/usuarios">
-              <a class="nav-link" href="#">Usuarios</a>
-            </router-link>
-          </li>
-
-          <li class="nav-item">
             <router-link to="/multipleChoice">
               <a class="nav-link" href="#">Multiple Choice</a>
             </router-link>

@@ -11,3 +11,4 @@ var options = {
 
 Vue.use(VueForm, options)
 
+

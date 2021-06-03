@@ -8,10 +8,18 @@ export default {
       formState: {},
       nombreLengthMin : 3,
       nombreLengthMax: 15,
-      dniMin: 8,
-      dniMax: 10,
-      pagosMin: 0,
       pagos: []
+    }
+  },
+  computed: {
+    total () {
+      let total = 0
+      if (!this.pagos.length) {
+        total = 0
+      } else {
+        this.pagos.forEach(p => total += p.importe)
+      }
+      return total
     }
   },
   mounted () {
@@ -24,10 +32,10 @@ export default {
 
       return {
         nombre: '',
-        dni: '',
-        deuda: '',
-        pagoEfectuado: '',
-        fechaHoy: diaRegistro
+        descripcion: '',
+        importe: '',
+        fechaHoy: diaRegistro,
+        total: ''
       }
     },
     enviar() {
@@ -36,15 +44,17 @@ export default {
       this.formData = this.getInicialData()
       this.formState._reset()
     },
-    pintarFila(idx) {
+    pintarTotal(total,presupuesto) {
       let color
-      const saldoDeuda = this.pagos[idx].deuda - this.pagos[idx].pagoEfectuado
-      if (saldoDeuda > 0) {
-        color = "table-danger"
-      } else if (saldoDeuda === 0) {
-        color = "table-success"
+
+      if(total > presupuesto) {
+        color = "text-danger"
+        } else if (total > 5000) {
+        color = "text-warning"
+      } else if (total < 1000) {
+        color = "text-success"
       } else {
-        color = "table-info"
+        color = "magenta"
       }
       return color
     }

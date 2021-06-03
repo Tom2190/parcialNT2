@@ -13,13 +13,17 @@
           name="nombre"
           class="form-control"
           autocomplete="on"
-          v-model="formData.nombre"
+          v-model.trim="formData.nombre"
           required
           :minlength="nombreLengthMin"
           :maxlength="nombreLengthMax"
+          sin-espacios
         >
         <field-messages name="nombre" show="$dirty">
           <div slot="required" class="alert alert-danger mt-1">Campo requerido</div>
+          <div slot="sin-espacios" class="alert alert-danger mt-1">
+            No se permiten espacios intermedios en este campo
+          </div>
           <div slot="minlength" class="alert alert-danger mt-1">
             Se deben ingresar como mínimo {{nombreLengthMin}} caracteres
           </div>
@@ -31,68 +35,36 @@
       <br>
 
       <validate tag="div">
-        <label for="dni">DNI</label>
+        <label for="descripcion">Descripción</label>
         <input 
           type="text" 
-          id="dni" 
+          id="descripcion" 
+          name="descripcion"
           class="form-control"
-          name="dni"
           autocomplete="on"
-          v-model.trim="formData.dni"
+          v-model="formData.descripcion"
           required
-          :minlength="dniMin"
-          :maxlength="dniMax"
-          sin-espacios
         >
-        <field-messages name="dni" show="$dirty">
+        <field-messages name="descripcion" show="$dirty">
           <div slot="required" class="alert alert-danger mt-1">Campo requerido</div>
-          <div slot="sin-espacios" class="alert alert-danger mt-1">
-            No se permiten espacios intermedios en este campo
-          </div>
-          <div slot="minlength" class="alert alert-danger mt-1">
-            Se deben ingresar como mínimo {{dniMin}} caracteres
-          </div>
-          <div v-if="formData.dni.length == dniMax" class="alert alert-danger mt-1">
-            Máximo de {{dniMax}} caracteres alcanzados
-          </div>
         </field-messages>
       </validate>
       <br>
 
       <validate tag="div">
-        <label for="deuda">Deuda</label>
+        <label for="importe">Importe</label>
         <input 
           type="number" 
-          id="deuda" 
+          id="importe" 
           class="form-control"
-          name="deuda"
-          autocomplete="off"
-          v-model.number="formData.deuda"
-          :min="pagosMin"
+          name="importe"
+          autocomplete="on"
+          v-model.number="formData.importe"
           required
         >
-        <field-messages name="deuda" show="$dirty">
+        <field-messages name="importe" show="$dirty">
           <div slot="required" class="alert alert-danger mt-1">Campo requerido</div>
-          <div slot="deuda" class="alert alert-danger mt-1">El pago ingresado no es válido</div>
-        </field-messages>
-      </validate>
-      <br>
-
-      <validate tag="div">
-        <label for="pagoEfectuado">Pago efectuado</label>
-        <input 
-          type="number" 
-          id="pagoEfectuado" 
-          class="form-control"
-          name="pagoEfectuado"
-          autocomplete="off"
-          v-model.number="formData.pagoEfectuado"
-          :min="pagosMin"
-          required
-        >
-        <field-messages name="pagoEfectuado" show="$dirty">
-          <div slot="required" class="alert alert-danger mt-1">Campo requerido</div>
-          <div slot="pagoEfectuado" class="alert alert-danger mt-1">El pago ingresado no es válido</div>
+          <div slot="importe" class="alert alert-danger mt-1">El pago ingresado no es válido</div>
         </field-messages>
       </validate>
       <br>
@@ -100,29 +72,28 @@
       <button class="btn btn-info my-4" :disabled="formState.$invalid" type="submit">Enviar</button>
       
       </vue-form>
-     
+
       <template>
         <div class="container">
-          <h2 class="jumbotron">Pagos registrados</h2>
+          <h2 class="jumbotron">Gastos registrados</h2>
           <table class="table table-bordered table-light">
             <thead>
               <tr>
                 <th>Nombre</th>
-                <th>DNI</th>
-                <th>Deuda</th>
-                <th>Pago</th>
-                <th>Deuda actualizada</th>
+                <th>Descripción</th>
+                <th>Importe</th>
                 <th>Fecha del registro</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(pago,idx) in pagos" :key="idx" :class="pintarFila(idx)">
+              <tr v-for="(pago,idx) in pagos" :key="idx" >
                 <td>{{pago.nombre}}</td>
-                <td>{{pago.dni}}</td>
-                <td>${{pago.deuda}}</td>
-                <td>${{pago.pagoEfectuado}}</td>
-                <td>${{pago.deuda - pago.pagoEfectuado}}</td>
+                <td>{{pago.descripcion}}</td>
+                <td>${{pago.importe}}</td>
                 <td>{{pago.fechaHoy}}</td>
+              </tr>
+              <tr :class="pintarTotal(total,500000)">
+                <td>Gasto total: ${{total}}</td>
               </tr>
             </tbody>
           </table>
